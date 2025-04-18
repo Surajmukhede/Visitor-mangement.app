@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  app:
+    build: ./app
+    ports:
+      - "80:80"
+    depends_on:
+      - mysql
+
+  mysql:
+    build: ./mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: visitor_management
+    ports:
+      - "3306:3306"

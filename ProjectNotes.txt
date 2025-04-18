@@ -1,0 +1,57 @@
+This is a php app for visitor management that allows our security personnel's to document information of visitors in the system. We are security service provider for a telecom company named Sycatel.
+
+The app allows us to document visitor/customer information such as Name, Mobile No., email, contact person name, visit reason that's a list of options such as purchasing, enquiry, dispute, meeting, presentation, others. and time stamp auto captured.
+
+These detail are saved in MySQL.
+
+The app has a separate page for new visitor entry, and fetch pages for all entries and lastly another fetch entry based on visit reason.
+
+This project has to be delivered using a containerized approach and we will be using docker compose for image building and running the application.
+
+
+following is the directory structure
+
+visitor-management-app/
+│
+├── app/
+│   ├── db.php
+│   ├── index.php
+│   ├── add_visitor.php
+│   ├── fetch_all.php
+│   ├── fetch_by_reason.php
+│   └── Dockerfile
+│
+├── mysql/
+│   └── Dockerfile
+│   └── init.sql
+│
+└── docker-compose.yml
+
+
+
+I am using amazon linux 2023 on t2.medium
+To achieve this we need to install docker:
+
+sudo hostnamectl set-hostname vm1 
+sudo yum update
+sudo yum install docker -y
+sudo usermod -aG docker ec2-user
+sudo systemctl start docker
+sudo systemctl enable docker
+exit
+
+
+##Requirement: docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d '"' -f 4)/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+
+
+final testing...
+
+docker-compose build
+docker-compose up
+
+
+
+Visit http://localhost:8080
